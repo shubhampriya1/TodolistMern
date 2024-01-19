@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Outfit:wght@100;200;300;400;500;600;800&family=Pathway+Extreme:wght@200&family=Roboto:wght@400;900&display=swap');
+*{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: "outfit",Georgia, 'Times New Roman', Times, serif ;
+
+}
+body{
+  background: black;
+}
+h1,
+h4,
+p,
+a{
+color: azure;
+text-decoration: none;
+}
+ul{
+  list-style-type: none;
+}
+.btn {
+  padding: 12px 32px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: rgb(248,217,15);
+  color: black;
+  border: 1px solid #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-dark{
+  padding: 12px 32px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: rgb(180, 101, 27);
+  color: black;
+  border: 1px solid #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-light{
+  padding: 12px 32px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  background-color: rgb(201, 196, 169);
+  color: black;
+  border: 1px solid #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.textpadding{
+  padding-bottom: 20px;
+}
