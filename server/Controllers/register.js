@@ -19,10 +19,10 @@ export async function register(req, res) {
       email: email,
       password: password,
     });
-    newuser.token = generatetoken(newuser._id);
+
     await newuser.save();
 
-    return res.status(201).json(newuser.token);
+    return res.status(201).json({ token: generatetoken(newuser._id) });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server error");
