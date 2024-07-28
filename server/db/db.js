@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const connection = () => {
   const url =
-    "mongodb+srv://shubham:1234567890@cluster0.ppm7bwf.mongodb.net/register?retryWrites=true&w=majority";
+    "mongodb+srv://shubham:1234567890@cluster0.ppm7bwf.mongodb.net/registerV2?retryWrites=true&w=majority";
 
   mongoose.connect(url);
   mongoose.connection.on("connected", () => {
