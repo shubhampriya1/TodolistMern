@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -24,16 +24,17 @@ const Register = () => {
   async function register() {
     setLoading(true);
     try {
-      const response = await axios.post(`${import.meta.env.VITE_PUBIC_BACKEND_URL}/user`, {
-        name: name,
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/user`,
+        {
+          name: name,
+          email: email,
+          password: password,
+        }
+      );
       Cookies.set("authtoken", response.data.token, { expires: 7 });
       toast.success("Successfully Registered");
       navigate("/");
-
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -45,12 +46,12 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-center h-screen w-screen">
-      <Card className="md:w-96 m-auto bg-transparent">
+      <Card className="md:w-96 bg-transparent">
         <CardHeader>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
             Already have an account?{" "}
-            <Link to={"/login"} className="underline">
+            <Link to={"/"} className="underline">
               Login
             </Link>
           </CardDescription>
