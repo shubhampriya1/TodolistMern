@@ -29,7 +29,6 @@ const Todolist = () => {
         config
       );
       console.log(response);
-      fetchTodos();
       toast.success("Todo added successfully");
     } catch (error) {
       if (error.response) {
