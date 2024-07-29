@@ -23,7 +23,7 @@ const Register = () => {
 
   async function login() {
     try {
-      const response = await axios.post("http://localhost:3000/user/login", {
+      const response = await axios.post(`${import.meta.env.VITE_PUBIC_BACKEND_URL}/user/login`, {
         email: email,
         password: password,
       });
@@ -65,8 +65,7 @@ const Register = () => {
                 />
               </div>
               <div className="flex flex-col items-start gap-1 space-y-1.5">
-                <Label htmlFor="password">Password</Label>
-                <Input
+<Input
                   id="password"
                   placeholder="Enter your password"
                   name="password"

@@ -53,3 +53,14 @@ export async function login(req, res) {
     return res.status(500).send("Internal Server Error");
   }
 }
+export async function getUserDetails(req, res) {
+  try {
+    return res.status(200).json({
+      userId: req.user._id,
+      useremail: req.user.email,
+      
+    });
+  } catch (error) {
+    return res.status(500).send("Internal Server Error");
+  }
+}

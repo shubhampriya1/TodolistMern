@@ -24,7 +24,7 @@ const Register = () => {
   async function register() {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3000/user", {
+      const response = await axios.post(`${import.meta.env.VITE_PUBIC_BACKEND_URL}/user`, {
         name: name,
         email: email,
         password: password,

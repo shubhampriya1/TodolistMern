@@ -18,8 +18,8 @@ app.use("/todos", todoroutes);
 app.get("/", (req, res) => {
   res.send("sever is ready");
 });
-const Port = 3000;
+const PORT=process.env.PORT||3000;
 
-app.listen(Port, () => {
-  console.log(`Server is running on port",http://localhost:${Port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port",http://localhost:${PORT}`);
 });

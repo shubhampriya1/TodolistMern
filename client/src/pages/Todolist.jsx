@@ -22,7 +22,7 @@ const Todolist = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:3000/todos/add",
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/todos/add`,
         {
           task: task,
         },
@@ -55,7 +55,7 @@ const Todolist = () => {
       };
 
       const response = await axios.delete(
-        `http://localhost:3000/todos/delete/${id}`,
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/todos/delete/${id}`,
         config
       );
       console.log(response.data);
@@ -78,7 +78,7 @@ const Todolist = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:3000/todos/update`,
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/todos/update`,
         {
           task,
           id,
@@ -105,7 +105,7 @@ const Todolist = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:3000/todos/get",
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/todos/get`,
         config
       );
       console.log("fetched todos", response.data);
