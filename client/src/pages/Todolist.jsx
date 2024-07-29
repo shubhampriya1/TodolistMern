@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Edit, Trash } from "lucide-react";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
+import { AuthContext } from "@/Provider/AuthProvider";
 const Todolist = () => {
   const [task, setTask] = useState("");
   const [todos, setTodos] = useState([]);
 
+  const { logout } = useContext(AuthContext);
   async function AddTodos() {
     try {
       const token = Cookies.get("authtoken");
@@ -28,7 +30,8 @@ const Todolist = () => {
         },
         config
       );
-      console.log(response);
+
+      setTodos([...todos, response.data]); // Added to ensure we do not nedd to fetch again
       toast.success("Todo added successfully");
     } catch (error) {
       if (error.response) {
@@ -53,11 +56,12 @@ const Todolist = () => {
         },
       };
 
-      const response = await axios.delete(
+      await axios.delete(
         `${import.meta.env.VITE_PUBIC_BACKEND_URL}/todos/delete/${id}`,
         config
       );
-      console.log(response.data);
+      setTodos(todos.filter((todo) => todo._id !== id)); // Added to ensure we do not nedd to fetch again
+      setTask(""); // Added to ensure state turns empty
       toast.success("Successfully Deleted");
     } catch (error) {
       console.log(error);
@@ -84,7 +88,7 @@ const Todolist = () => {
         },
         config
       );
-      console.log("response", response.data);
+      setTodos(todos.map((todo) => (todo._id === id ? response.data : todo)));
       toast.success("succesfuly updated");
     } catch (error) {
       console.log(error);
@@ -109,7 +113,6 @@ const Todolist = () => {
       );
       console.log("fetched todos", response.data);
       setTodos(response.data);
-      fetchTodos();
     } catch (error) {
       console.error("Error fetching todos:", error);
     }
@@ -128,6 +131,9 @@ const Todolist = () => {
         />
         <Button className="ml-3" value="add" onClick={AddTodos}>
           Add
+        </Button>
+        <Button className="ml-3" value="logout" onClick={logout}>
+          Logout
         </Button>
       </div>
       <div className="space-y-3 mt-10">
