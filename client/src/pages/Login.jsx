@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Card,
   CardContent,
@@ -15,20 +15,25 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { AuthContext } from "@/Provider/AuthProvider";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
 
   async function login() {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_PUBIC_BACKEND_URL}/user/login`, {
-        email: email,
-        password: password,
-      });
-      console.log(response.data);
-      Cookies.set("authtoken",response.data.token,{expires:7})
+      const response = await axios.post(
+        `${import.meta.env.VITE_PUBIC_BACKEND_URL}/user/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
+      setUser(response.data);
+      Cookies.set("authtoken", response.data.token, { expires: 7 });
       toast.success("Login successfully");
       navigate("/todolist");
     } catch (error) {
@@ -46,8 +51,8 @@ const Register = () => {
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
             Already have an account?{" "}
-            <Link to={"/login"} className="underline">
-              Login
+            <Link to={"/register"} className="underline">
+              Register
             </Link>
           </CardDescription>
         </CardHeader>
@@ -65,7 +70,7 @@ const Register = () => {
                 />
               </div>
               <div className="flex flex-col items-start gap-1 space-y-1.5">
-<Input
+                <Input
                   id="password"
                   placeholder="Enter your password"
                   name="password"
